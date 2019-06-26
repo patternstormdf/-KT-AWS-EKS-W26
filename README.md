@@ -53,8 +53,11 @@ DF VP TPM Knowledge Transfer Session on AWS EKS
         * VpcId = select your cluster's VPC from the dropdown
         * Subnets = select your cluster's VPC subnets from the dropdown
 * **9. Add the worker nodes to the cluster**
-    * Open your workers node group CloudFormation stack using the [AWS CF Console](https://us-east-2.console.aws.amazon.com/cloudformation) and go to the *Outputs* tab
-    * Edit the [aws_auth_cm.yaml]() file to replace...
+    * Open your workers node grouphttps://github.com/patternstormdf/kt-aws-eks-w26/blob/master/aws_auth_cm.yaml CloudFormation stack using the [AWS CF Console](https://us-east-2.console.aws.amazon.com/cloudformation) and go to the *Outputs* tab
+    * Edit the [aws_auth_cm.yaml](https://github.com/patternstormdf/kt-aws-eks-w26/blob/master/aws_auth_cm.yaml) file to replace...
         * ${NodeGroup.NodeInstanceRole} with the NodeInstanceRole value
-        * Use kubectl to apply the 
+        * Use kubectl to apply the config map
+            * *$ kubectl --kubeconfig kubeconfig apply -f aws-auth-cm.yaml*
+* **10. Check worker nodes successfully joined the cluster**
+    * Run *$kubectl --kubeconfig kubeconfig get nodes* 
         
