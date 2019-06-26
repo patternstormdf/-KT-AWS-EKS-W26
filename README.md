@@ -16,7 +16,7 @@ DF VP TPM Knowledge Transfer Session on AWS EKS
         * Make it executable *$ chmod +x ./kubectl*
         * Check successful installation *$ kubectl help*
     * Windows
-        * Download from [here](https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/linux/amd64/kubectl) into the project's root directory
+        * Download from [here](https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/windows/amd64/kubectl.exe) into the project's root directory
         * Check successful installation *$ kubectl help*
     * MacOS
         * Download from [here](https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/darwin/amd64/kubectl) into the project's root directory
@@ -45,15 +45,15 @@ DF VP TPM Knowledge Transfer Session on AWS EKS
 * **8. Provision worker nodes**
     * Execute [this CloudFormation template](https://github.com/patternstormdf/kt-aws-eks-w26/blob/master/eks-cluster-nodegroup.yaml) via the [AWS CF Console](https://us-east-2.console.aws.amazon.com/cloudformation)
         * Stack Name = *{your name}-eks-cluster-nodegroup*
-        * ClusterName = *{your DF email address prefix}-eks-cluster}*
+        * ClusterName = *{your DF email address prefix}-eks-cluster*
         * ClusterControlPlaneSecurityGroup = select from drop down your cluster's VPC security group
-        * NodeGroupName = *{your DF email address prefix}-eks-cluster-nodegroup}*  
+        * NodeGroupName = *{your DF email address prefix}-eks-cluster-nodegroup*  
         * NodeImageId = select from [here](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html) the AMI corresponding to K8s v1.13.x for your region
         * KeyPair = select your AWS key pair from the dropdown, to create a key pair follow the instructions [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair)
         * VpcId = select your cluster's VPC from the dropdown
         * Subnets = select your cluster's VPC subnets from the dropdown
 * **9. Add the worker nodes to the cluster**
-    * Open your workers node grouphttps://github.com/patternstormdf/kt-aws-eks-w26/blob/master/aws_auth_cm.yaml CloudFormation stack using the [AWS CF Console](https://us-east-2.console.aws.amazon.com/cloudformation) and go to the *Outputs* tab
+    * Open your workers node group CloudFormation stack using the [AWS CF Console](https://us-east-2.console.aws.amazon.com/cloudformation) and go to the *Outputs* tab
     * Edit the [aws_auth_cm.yaml](https://github.com/patternstormdf/kt-aws-eks-w26/blob/master/aws_auth_cm.yaml) file to replace...
         * ${NodeGroup.NodeInstanceRole} with the NodeInstanceRole value
         * Use kubectl to apply the config map
